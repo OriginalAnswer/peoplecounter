@@ -19,7 +19,7 @@ document.querySelectorAll('.btn').forEach(btn => {
     updateResult(dataTitle); // 결과 업데이트
     updateTable(); // 테이블 업데이트
 
-    const storedData = localStorage.getItem('PeopleCounter');
+    const storedData = localStorage.getItem('PeopleCounterApp');
     const status = JSON.parse(storedData).status;
     if (status === 'recording') {
         updateRecord(); // 기록 업데이트
@@ -67,8 +67,9 @@ function updateRecord() {
   const D = String(date.getDate()).padStart(2, '0');
   const dArr = `${Y}${M}${D}`;
 
-  const H = date.getHours();
-  const hArr = `${H}:00 - ${H + 1}:00`;
+  const H = String(date.getHours()).padStart(2, '0');
+  const HH = String(date.getHours() + 1).padStart(2, '0');
+  const hArr = `${H}:00 - ${HH}:00`;
 
   const realResults = {};
   document.querySelectorAll('.result-table td').forEach(td => {
