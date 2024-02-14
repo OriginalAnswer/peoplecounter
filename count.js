@@ -50,21 +50,42 @@ document.querySelectorAll('.btn').forEach(btn => {
       printResult(AnG); 
       updateTotal(); 
       printTable();
+
       const storedData = localStorage.getItem('PeopleCounterApp');
       const status = JSON.parse(storedData).status;
       if (status === 'recording') {
-        //   updateRecord(); // 기록 업데이트
+          stockResult(); // 기록 업데이트
           saveToLocalStorage(); // 로컬 스토리지에 저장
       }
     });
   });
+function stockResult(){    
+        const date = new Date();
+        const Y = String(date.getFullYear());
+        const M = String(date.getMonth() + 1).padStart(2, '0');
+        const D = String(date.getDate()).padStart(2, '0');
+    const dArr = `${Y}${M}${D}`;
 
+        let PeopleCounterApp = JSON.parse(localStorage.getItem('PeopleCounterApp'));
+        const H = PeopleCounterApp.recordingTime;
+        const HH = String(parseInt(PeopleCounterApp.recordingTime) + 1);
+    const hArr = `${H}:00 - ${HH}:00`;
 
+    if (!stockArr[dArr]) {
+        stockArr[dArr] = {};
+      }
+      if (!stockArr[dArr][hArr]) {
+        stockArr[dArr][hArr] = {};
+      }
+      stockArr[dArr][hArr] = realCounter;
 
-
+}
 // 로컬 스토리지에 데이터 저장
 function saveToLocalStorage() {
-    // localStorage.setItem('stockArr', JSON.stringify(stockArr));
+    localStorage.setItem('stockArr', JSON.stringify(stockArr));
     localStorage.setItem('realCounter', JSON.stringify(realCounter));
   }
+
+
+
   
