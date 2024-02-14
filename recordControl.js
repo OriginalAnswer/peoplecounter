@@ -11,6 +11,7 @@ function playpause(){
     const status = JSON.parse(storedData).status;
     if (status === 'recording') {
         playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+        realRecord();
     } else if (status === 'pause') {
         playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
     } else {
@@ -46,6 +47,15 @@ window.addEventListener('load', () => {
 
 refrashBtn.addEventListener('click', () => {
     localStorage.removeItem('PeopleCounter');
-    localStorage.removeItem('realCount');
-    playBtn.innerHTML = '<i class="fa-solid fa-play"></i><i class="fa-solid fa-pause"></i>';
+    localStorage.removeItem('realCounter');
+    playBtn.innerHTML = '<i class="fa-solid fa-play"></i> <i class="fa-solid fa-pause"></i>';
+    const resultTableCells = document.querySelectorAll(".result-table .r");
+  resultTableCells.forEach((cell) => {
+    cell.innerText = 0;
+  });
+
+  // 총합 값 0으로 초기화
+  document.getElementById("rmall").innerText = 0;
+  document.getElementById("rwall").innerText = 0;
+  document.getElementById("rall").innerText = 0;
 });
