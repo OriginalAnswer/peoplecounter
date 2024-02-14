@@ -19,17 +19,11 @@ let realCounter = JSON.parse(localStorage.getItem('realCounter')) || {rmall: 0, 
 
 
 
+const parsedRealCounter = JSON.parse(localStorage.getItem("realCounter"));
 
 
-// 결과 업데이트 함수
-function updateResult(AnG) {
-    const r = document.getElementById(AnG);
-    const v = parseInt(r.innerText);
-    r.innerText = v + 1;
-    realCounter[AnG] = v + 1;
-  }
 // 테이블 업데이트 함수
-function updateTable() {
+function updateTotal() {
     let rmTotal = 0;
     let rwTotal = 0;
     const rmElements = document.querySelectorAll('.rm');
@@ -45,16 +39,26 @@ function updateTable() {
     realCounter.rmall = rmTotal;
     realCounter.rwall = rwTotal;
     realCounter.rall = rmTotal + rwTotal;
-    document.getElementById('rmall').innerText = rmTotal;
-    document.getElementById('rwall').innerText = rwTotal;
-    document.getElementById('rall').innerText = rmTotal + rwTotal;
+    saveToLocalStorage();
+}
+function printResult(AnG) {
+    const r = document.getElementById(AnG);
+    const v = parseInt(r.innerText);
+    r.innerText = v + 1;
+    realCounter[AnG] = v + 1;
+  }
+function printTable(){
+    document.getElementById('rmall').innerText = realCounter.rmall;
+    document.getElementById('rwall').innerText = realCounter.rwall;
+    document.getElementById('rall').innerText = realCounter.rall;
 }
 // 버튼 클릭
 document.querySelectorAll('.btn').forEach(btn => {
     btn.addEventListener('click', function() {
       const AnG = this.dataset.title; // 클릭한 버튼의 data-title 속성 값
-      updateResult(AnG); 
-      updateTable(); // 테이블 업데이트
+      printResult(AnG); 
+      updateTotal(); 
+      printTable();
       const storedData = localStorage.getItem('PeopleCounterApp');
       const status = JSON.parse(storedData).status;
       if (status === 'recording') {

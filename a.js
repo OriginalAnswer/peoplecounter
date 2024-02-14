@@ -3,8 +3,8 @@ let stockArr = JSON.parse(localStorage.getItem('stockArr')) || {};
 let realCounter = JSON.parse(localStorage.getItem('realCounter')) || {rmall: 0, rwall: 0, rall: 0};
 
 // 페이지 로딩 시 로컬 스토리지 값 가져오기
-const parsedRealCounter = JSON.parse(localStorage.getItem("realCounter"));
 const parsedStockArr = JSON.parse(localStorage.getItem("stockArr"));
+const parsedRealCounter = JSON.parse(localStorage.getItem("realCounter"));
 
 // 값 존재 시 테이블 업데이트
 if (parsedRealCounter && parsedStockArr) {
