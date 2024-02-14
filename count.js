@@ -4,25 +4,13 @@ let realCounter = JSON.parse(localStorage.getItem('realCounter')) || {rmall: 0, 
 
 
 
-
-
-
+// 페이지 로드 시 realCounter 테이블에 출력
 Object.keys(realCounter).forEach(function(key){
     const r = document.getElementById(key);
     r.innerText = realCounter[key];
 })
 
-
-
-
-
-
-
-
-
-
-
-const parsedRealCounter = JSON.parse(localStorage.getItem("realCounter"));
+// const parsedRealCounter = JSON.parse(localStorage.getItem("realCounter"));
 
 
 // 테이블 업데이트 함수
