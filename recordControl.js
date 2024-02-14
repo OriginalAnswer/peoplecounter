@@ -46,5 +46,6 @@ window.addEventListener('load', () => {
 
 refrashBtn.addEventListener('click', () => {
     localStorage.removeItem('PeopleCounter');
+    localStorage.removeItem('realCount');
     playBtn.innerHTML = '<i class="fa-solid fa-play"></i><i class="fa-solid fa-pause"></i>';
 });

@@ -15,32 +15,21 @@ let realCount = JSON.parse(localStorage.getItem('realCount')) || {};
         });
     });
 // 인구수 증가 함수 정의
-    function addCount(key) {
-        if (!realCount[key]) {
-            realCount[key] = 0;
+    function addCount(AG) {
+        if (!realCount[AG]) {
+            realCount[AG] = 0;
         }
-        realCount[key]++;
-        updateDisplay(key);
+        realCount[AG]++;
+        updateDisplay(AG);
         saveToLocalStorage();
     }
     
 // 화면 표시 업데이트
-    function updateDisplay(key) {
-        const resultElement = document.getElementById(key);
+    function updateDisplay(AG) {
+        const resultElement = document.getElementById(AG);
         if (resultElement) {
-            resultElement.textContent = realCount[key];
+            resultElement.textContent = realCount[AG];
         }
-    }
-
-// 총합
-    resultTable.querySelectorAll('.rm').forEach(rm => {
-        rm.addEventListener('change', () => {
-            const n = Number(rm.innerText);
-            updateTotals(n, 'rm');
-        });
-    });
-    function updateTotals(){
-        
     }
 
 
