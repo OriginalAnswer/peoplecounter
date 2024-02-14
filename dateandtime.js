@@ -21,7 +21,7 @@ function getTime() {
     time.innerText = `${h}:${m}:${s}`;
 
     let PeopleCounterApp = JSON.parse(localStorage.getItem('PeopleCounterApp'));
-    let rt = PeopleCounterApp.recordingTime
+    let rt = PeopleCounterApp.recordingTime;
     if(rt !== h){
         localStorage.setItem('PeopleCounterApp', JSON.stringify({ 
             "status": "recording",
