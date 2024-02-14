@@ -1,0 +1,22 @@
+DB
+statu : recording / pause
+real-result {
+r10m: ,
+r10w: ,
+r20m: ,
+r20w: ,
+r30m: ,
+r30w: ,
+r40m: ,
+r40w: ,
+r50m: ,
+r50w: ,
+r60m: ,
+r60w: ,
+r70m: ,
+r70w: ,
+rmall: ,
+rwall: ,
+rall: 
+}
+stack-result

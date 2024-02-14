@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>유동인구조사기</title>
+</head>
+<body>
+    <header>
+        <h1>유동인구조사기</h1>
+    </header>
+    <main>
+        <div id="realdate">0000년00월00일0요일</div>
+        <div id="realtime">00:00:00</div>
+        <div class="text">
+            <div class="title"></div>
+            <div class="result">
+                <table>
+                    <tr>
+                        <th>연령</th><th>남</th><th>여</th>
+                    </tr>
+                    <tr>
+                        <td>10대</td><td id="r10m"></td><td id="r10w"></td>
+                    </tr>
+                    <tr>
+                        <td>20대</td><td id="r20m"></td><td id="r20w"></td>
+                    </tr>
+                    <tr>
+                        <td>30대</td><td id="r30m"></td><td id="r30w"></td>
+                    </tr>
+                    <tr>
+                        <td>40대</td><td id="r40m"></td><td id="r0w"></td>
+                    </tr>
+                    <tr>
+                        <td>50대</td><td id="r50m"></td><td id="r50w"></td>
+                    </tr>
+                    <tr>
+                        <td>60대</td><td id="r60m"></td><td id="r60w"></td>
+                    </tr>
+                    <tr>
+                        <td>70대</td><td id="r70m"></td><td id="r70w"></td>
+                    </tr>
+                    <tr>
+                        <td>남녀</td><td id="rmall"></td><td id="rwall"></td>
+                    </tr>
+                    <tr>
+                        <td>총합</td><td id="rall" colspan="2"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <div class="control-btn">
+            <button class="btn" id="record">🔴</button>
+            <button class="btn" id="play">
+                <i class="fa-solid fa-play"></i>
+                <i class="fa-solid fa-pause"></i>
+            </button>
+        </div>
+
+        <div class="btn-container">
+            <div class="btn-row">
+                <button class="btn" id="btn10m">10대 남</button>
+                <button class="btn" id="btn10w">10대 여</button>
+            </div>
+            <div class="btn-row">
+                <button class="btn" id="btn20m">20대 남</button>
+                <button class="btn" id="btn20w">20대 여</button>
+            </div>
+            <div class="btn-row">
+                <button class="btn" id="btn30m">30대 남</button>
+                <button class="btn" id="btn30w">30대 여</button>
+            </div>
+            <div class="btn-row">
+                <button class="btn" id="btn40m">40대 남</button>
+                <button class="btn" id="btn40w">40대 여</button>
+            </div>
+            <div class="btn-row">
+                <button class="btn" id="btn50m">50대 남</button>
+                <button class="btn" id="btn50w">50대 여</button>
+            </div>
+            <div class="btn-row">
+                <button class="btn" id="btn60m">60대 남</button>
+                <button class="btn" id="btn60w">60대 여</button>
+            </div>
+            <div class="btn-row">
+                <button class="btn" id="btn70m">70대 남</button>
+                <button class="btn" id="btn70w">70대 여</button>
+            </div>
+        </div>
+
+        <div class="stock-result">
+            <div><span>기록</span></div>
+            <details>
+                <summary class="stock-date">0000년00월00일0요일</summary>
+
+                <details class="stock-time">
+                    <summary>00:00 - 00:00</summary>
+                    <table>
+                        <tr>
+                            <th>연령</th><th>남</th><th>여</th>
+                        </tr>
+                        <tr>
+                            <td>10대</td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>20대</td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>30대</td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>40대</td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>50대</td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>60대</td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>70대</td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>-</td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>-</td><td colspan="2"></td>
+                        </tr>
+                    </table>
+                </details>
+
+                <details class="stock-time">
+                    <summary>00:00 - 00:00</summary>
+                    <table>
+                        <tr>
+                            <th>연령</th><th>남</th><th>여</th>
+                        </tr>
+                        <tr>
+                            <td>10대</td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>20대</td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>30대</td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>40대</td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>50대</td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>60대</td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>70대</td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>-</td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>-</td><td></td>
+                        </tr>
+                    </table>
+                </details>
+
+            </details>
+            
+            <details>
+                <summary>0000년00월00일0요일</summary>
+
+                <details class="stock-time">
+                    <summary>00:00 - 00:00</summary>
+                    <table>
+                        <tr>
+                            <th>연령</th><th>남</th><th>여</th>
+                        </tr>
+                        <tr>
+                            <td>10대</td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>20대</td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>30대</td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>40대</td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>50대</td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>60대</td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>70대</td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>-</td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>-</td><td></td>
+                        </tr>
+                    </table>
+                </details>
+
+                <details class="stock-time">
+                    <summary>00:00 - 00:00</summary>
+                    <table>
+                        <tr>
+                            <th>연령</th><th>남</th><th>여</th>
+                        </tr>
+                        <tr>
+                            <td>10대</td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>20대</td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>30대</td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>40대</td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>50대</td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>60대</td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>70대</td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>-</td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>-</td><td></td>
+                        </tr>
+                    </table>
+                </details>
+
+            </details>
+            
+        </div>
+    </main>
+    <script src="./dateandtime.js"></script>
+    <script src="./count.js"></script>
+    <script src="https://kit.fontawesome.com/e4704dcbbd.js" crossorigin="anonymous"></script>
+</body>
+</html>
