@@ -1,4 +1,3 @@
-let realHour = 0;
 
 function getDate() {
     const today = document.querySelector('#realdate');
@@ -13,7 +12,6 @@ function getDate() {
     today.innerText = `${y}년 ${m+1}월 ${d}일 ${wArr[dy]}`;
 }
 
-
 function getTime() {
     const time = document.querySelector('#realtime');
     const date = new Date();
@@ -21,7 +19,15 @@ function getTime() {
     const m = String(date.getMinutes()).padStart(2,"0");
     const s = String(date.getSeconds()).padStart(2,"0");
     time.innerText = `${h}:${m}:${s}`;
-    realHour = date.getHours();
+
+    let PeopleCounterApp = JSON.parse(localStorage.getItem('PeopleCounterApp'));
+    let rt = PeopleCounterApp.recordingTime
+    if(rt !== h){
+        localStorage.setItem('PeopleCounterApp', JSON.stringify({ 
+            "status": "recording",
+            "recordingTime" : h
+         }));
+    }
 }
 
 getDate();
