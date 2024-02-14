@@ -33,7 +33,7 @@ ol,ul,li{
 a, button{
     border: 0;
     outline: none;
-    transition: transform .3s;
+    transition: transform .1s;
     color: inherit;
 }
 
