@@ -70,9 +70,29 @@ main>div{
     background-color: #d6d6d6;
 }
 /* ----------------- */
+.stock-date{
+    margin-bottom: 2px;
+
+}
 .stock-time{
     padding-left: 20px;
 }
+summary,
+.stock-header{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 2px;
+    margin-bottom: 5px;
+    border-bottom: var(--border);
+    align-items:end;
+}
+
+.stock-delete{
+    /* border: var(--border);
+    padding: 1px; */
+    background-color:#00000000;
+}
+
 /* ----------------- */
 table{
     width: 100%;

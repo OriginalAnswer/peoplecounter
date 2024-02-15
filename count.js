@@ -34,6 +34,7 @@ function updateTotal() {
 }
 function printResult(AnG) {
     const r = document.getElementById(AnG);
+    console.log(r);
     const v = parseInt(r.innerText);
     r.innerText = v + 1;
     realCounter[AnG] = v + 1;
@@ -64,7 +65,9 @@ function stockResult(){
         const Y = String(date.getFullYear());
         const M = String(date.getMonth() + 1).padStart(2, '0');
         const D = String(date.getDate()).padStart(2, '0');
-    const dArr = `${Y}${M}${D}`;
+        const DY = String(date.getDay());
+        const wArr = new Array('일요일','월요일','화요일','수요일','목요일','금요일','토요일');
+    const dArr = `${Y}년 ${M}월 ${D}일 ${wArr[DY]}`;
 
         let PeopleCounterApp = JSON.parse(localStorage.getItem('PeopleCounterApp'));
         const H = PeopleCounterApp.recordingTime;
@@ -88,4 +91,7 @@ function saveToLocalStorage() {
 
 
 
-  
+
+
+
+// +++++++++++++++

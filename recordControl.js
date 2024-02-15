@@ -1,6 +1,6 @@
 const recordBtn = document.getElementById('record');
 const playBtn = document.getElementById('play');
-const refrashBtn = document.getElementById('refrash');
+const resetBtn = document.getElementById('reset');
 
 
 recordBtn.addEventListener('click', () => {
@@ -23,6 +23,8 @@ function playpause(){
         playBtn.innerHTML = '<i class="fa-solid fa-play"></i><i class="fa-solid fa-pause"></i>';
     }
 }
+
+
 playBtn.addEventListener('click', () => {
     const storedData = localStorage.getItem('PeopleCounterApp');
     let ST = JSON.parse(storedData).status;
@@ -63,7 +65,7 @@ window.addEventListener('load', () => {
     }
 });
 
-refrashBtn.addEventListener('click', () => {
+resetBtn.addEventListener('click', () => {
     localStorage.removeItem('PeopleCounterApp');
     localStorage.removeItem('realCounter');
     realCounter = {};
@@ -72,7 +74,6 @@ refrashBtn.addEventListener('click', () => {
     resultTableCells.forEach((cell) => {
         cell.innerText = 0;
     });
-
   // 총합 값 0으로 초기화
   document.getElementById("rmall").innerText = 0;
   document.getElementById("rwall").innerText = 0;

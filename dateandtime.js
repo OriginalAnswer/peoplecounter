@@ -20,13 +20,15 @@ function getTime() {
     const s = String(date.getSeconds()).padStart(2,"0");
     time.innerText = `${h}:${m}:${s}`;
 
-    let PeopleCounterApp = JSON.parse(localStorage.getItem('PeopleCounterApp'));
-    let rt = PeopleCounterApp.recordingTime;
+    const arr = JSON.parse(localStorage.getItem('PeopleCounterApp')) || {"recordingTime" : h};
+    const rt =  arr.recordingTime;
     if(rt !== h){
         localStorage.setItem('PeopleCounterApp', JSON.stringify({ 
             "status": "recording",
             "recordingTime" : h
-         }));
+        }));
+        const resetBtn = document.getElementById('reset');
+        resetBtn.click();
     }
 }
 

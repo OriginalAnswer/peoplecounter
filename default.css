@@ -40,6 +40,9 @@ a, button{
 a:active, button:active{
     transform: scale(.92);
 }
+button:hover{
+    cursor: pointer;
+}
 html{
     ::-webkit-scrollbar{
         display: none;

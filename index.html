@@ -57,7 +57,7 @@
                 <i class="fa-solid fa-play"></i>
                 <i class="fa-solid fa-pause"></i>
             </button>
-            <button class="btn" id="refrash">
+            <button class="btn" id="reset">
                 <i class="fa-solid fa-rotate-right"></i>
             </button>
         </div>
@@ -94,12 +94,25 @@
         </div>
 
         <div class="stock-result">
-            <div><span>기록</span></div>
+            <div class="stock-header">
+                <span class="stock-title">기록</span>
+                <button class="stock-delete">전체삭제❌</button>
+            </div>
             <details>
-                <summary class="stock-date">0000년00월00일0요일</summary>
+                <summary class="stock-date">
+                    <span class="stock-title">
+                        0000년00월00일0요일
+                    </span>
+                    <button class="stock-delete">❌</button>
+                </summary>
 
                 <details class="stock-time">
-                    <summary>00:00 - 00:00</summary>
+                    <summary>
+                        <span class="stock-title">
+                            00:00 - 00:00
+                        </span>
+                        <button class="stock-delete">❌</button>
+                    </summary>
                     <table>
                         <tr>
                             <th>연령</th><th>남</th><th>여</th>
@@ -126,46 +139,10 @@
                             <td>70대</td><td></td><td></td>
                         </tr>
                         <tr>
-                            <td>-</td><td></td><td></td>
+                            <td>남녀</td><td></td><td></td>
                         </tr>
                         <tr>
-                            <td>-</td><td colspan="2"></td>
-                        </tr>
-                    </table>
-                </details>
-
-                <details class="stock-time">
-                    <summary>00:00 - 00:00</summary>
-                    <table>
-                        <tr>
-                            <th>연령</th><th>남</th><th>여</th>
-                        </tr>
-                        <tr>
-                            <td>10대</td><td></td><td></td>
-                        </tr>
-                        <tr>
-                            <td>20대</td><td></td><td></td>
-                        </tr>
-                        <tr>
-                            <td>30대</td><td></td><td></td>
-                        </tr>
-                        <tr>
-                            <td>40대</td><td></td><td></td>
-                        </tr>
-                        <tr>
-                            <td>50대</td><td></td><td></td>
-                        </tr>
-                        <tr>
-                            <td>60대</td><td></td><td></td>
-                        </tr>
-                        <tr>
-                            <td>70대</td><td></td><td></td>
-                        </tr>
-                        <tr>
-                            <td>-</td><td></td><td></td>
-                        </tr>
-                        <tr>
-                            <td>-</td><td></td>
+                            <td>총합</td><td colspan="2"></td>
                         </tr>
                     </table>
                 </details>
@@ -173,9 +150,9 @@
             </details>
         </div>
     </main>
-    <script src="./dateandtime.js"></script>
     <script src="./recordControl.js"></script>
     <script src="./count.js"></script>
+    <script src="./dateandtime.js"></script>
     <script src="https://kit.fontawesome.com/e4704dcbbd.js" crossorigin="anonymous"></script>
 </body>
 </html>
