@@ -92,5 +92,87 @@ function saveToLocalStorage() {
 
 
 
-
 // +++++++++++++++
+
+// console.log(stockArr)
+// console.log(stockArr['2024년 02월 15일 목요일'])
+const stockView = document.querySelector('.stock-view');
+function printStock(){
+  const dv = document.createElement('div');
+  dv.classList.add('stock-header');
+  dv.innerHTML =`<span class="stock-title">기록</span>
+  <button class="stock-delete">전체삭제❌</button>`;
+  stockView.appendChild(dv);
+
+
+  const dvDetail = document.createElement('details');
+  const dvSummeary = document.createElement('summary');
+  // 이 아래부터는 순회 요소
+  const dts = document.createElement('details');//순환할때마다 새로운 details
+      const stcDATE = document.createElement('summary');
+            stcDATE.classList.add('stock-date');
+            stcDATE.innerHTML = `<span class="stock-title">${DATE}</span>
+                              <button class="stock-delete">❌</button>
+                              `
+      const stcTIME = document.createElement('details');
+            stcTIME.classList.add('stock-time');
+            stcTIME.innerHTML = `
+            <summary>
+                <span class="stock-title">${TIME}</span>
+                <button class="stock-delete">❌</button>
+            </summary>
+            <table>
+                <tr>
+                    <th>연령</th><th>남</th><th>여</th>
+                </tr>
+                <tr>
+                    <td>10대</td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td>20대</td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td>30대</td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td>40대</td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td>50대</td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td>60대</td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td>70대</td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td>남녀</td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td>총합</td><td colspan="2"></td>
+                </tr>
+            </table>
+            
+                              `
+      const stcTIMEtitle = document.createElement('summary');
+            stcTIMEtitle.classList.add('stock-title');
+  // 프린트
+  dvDetail.appendChild(stcDATE);
+  dvDetail.appendChild(stcTIME);
+  stockView.appendChild(dvDetail);
+
+}
+// printStock()
+
+Object.keys(stockArr).forEach(function(DATE){console.log(DATE);
+  Object.keys(stockArr[DATE]).forEach(function(TIME){console.log(TIME);
+                                    console.log(stockArr[DATE]);
+    Object.keys(stockArr[DATE][TIME]).forEach(function(r){console.log(r);
+                                    // console.log(stockArr[d][t][r]);
+          }
+        )  
+      }
+    )  
+  }
+)
