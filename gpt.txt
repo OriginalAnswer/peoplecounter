@@ -1,0 +1,319 @@
+index.html:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>유동인구조사기</title>
+</head>
+<body>
+    <header>
+        <h1>유동인구조사기</h1>
+    </header>
+    <main>
+        <div id="realdate">0000년00월00일0요일</div>
+        <div id="realtime">00:00:00</div>
+        <div class="text">
+            <div class="title"></div>
+            <div class="result">
+                <table class="result-table">
+                    <tr>
+                        <th>연령</th><th>남</th><th>여</th>
+                    </tr>
+                    <tr>
+                        <td>10대</td><td class="r rm" id="r10m">0</td><td class="r rw" id="r10w">0</td>
+                    </tr>
+                    <tr>
+                        <td>20대</td><td class="r rm" id="r20m">0</td><td class="r rw" id="r20w">0</td>
+                    </tr>
+                    <tr>
+                        <td>30대</td><td class="r rm" id="r30m">0</td><td class="r rw" id="r30w">0</td>
+                    </tr>
+                    <tr>
+                        <td>40대</td><td class="r rm" id="r40m">0</td><td class="r rw" id="r40w">0</td>
+                    </tr>
+                    <tr>
+                        <td>50대</td><td class="r rm" id="r50m">0</td><td class="r rw" id="r50w">0</td>
+                    </tr>
+                    <tr>
+                        <td>60대</td><td class="r rm" id="r60m">0</td><td class="r rw" id="r60w">0</td>
+                    </tr>
+                    <tr>
+                        <td>70대</td><td class="r rm" id="r70m">0</td><td class="r rw" id="r70w">0</td>
+                    </tr>
+                    <tr>
+                        <td>남녀</td><td id="rmall">0</td><td id="rwall">0</td>
+                    </tr>
+                    <tr>
+                        <td>총합</td><td id="rall" colspan="2">0</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <div class="control-btn">
+            <button class="btn" id="record">🔴</button>
+            <button class="btn" id="play">
+                <i class="fa-solid fa-play"></i>
+                <i class="fa-solid fa-pause"></i>
+            </button>
+            <button class="btn" id="reset">
+                <i class="fa-solid fa-rotate-right"></i>
+            </button>
+        </div>
+
+        <div class="btn-container">
+            <div class="btn-row">
+                <button class="btn" id="btn10m" data-title="r10m">10대 남</button>
+                <button class="btn" id="btn10w" data-title="r10w">10대 여</button>
+            </div>
+            <div class="btn-row">
+                <button class="btn" id="btn20m" data-title="r20m">20대 남</button>
+                <button class="btn" id="btn20w" data-title="r20w">20대 여</button>
+            </div>
+            <div class="btn-row">
+                <button class="btn" id="btn30m" data-title="r30m">30대 남</button>
+                <button class="btn" id="btn30w" data-title="r30w">30대 여</button>
+            </div>
+            <div class="btn-row">
+                <button class="btn" id="btn40m" data-title="r40m">40대 남</button>
+                <button class="btn" id="btn40w" data-title="r40w">40대 여</button>
+            </div>
+            <div class="btn-row">
+                <button class="btn" id="btn50m" data-title="r50m">50대 남</button>
+                <button class="btn" id="btn50w" data-title="r50w">50대 여</button>
+            </div>
+            <div class="btn-row">
+                <button class="btn" id="btn60m" data-title="r60m">60대 남</button>
+                <button class="btn" id="btn60w" data-title="r60w">60대 여</button>
+            </div>
+            <div class="btn-row">
+                <button class="btn" id="btn70m" data-title="r70m">70대 남</button>
+                <button class="btn" id="btn70w" data-title="r70w">70대 여</button>
+            </div>
+        </div>
+
+        <div class="stock-view">
+            
+        </div>
+    </main>
+    <script src="./recordControl.js"></script>
+    <script src="./count.js"></script>
+    <script src="./dateandtime.js"></script>
+    <script src="https://kit.fontawesome.com/e4704dcbbd.js" crossorigin="anonymous"></script>
+</body>
+</html>
+
+recordControl.js:
+const recordBtn = document.getElementById('record');
+const playBtn = document.getElementById('play');
+const resetBtn = document.getElementById('reset');
+
+
+recordBtn.addEventListener('click', () => {
+    const date = new Date();
+    const H = String(date.getHours()).padStart(2, '0');
+    localStorage.setItem('PeopleCounterApp', JSON.stringify({ 
+        "status": "recording",
+        "recordingTime" : H
+     }));
+    playpause();
+});
+function playpause(){
+    const storedData = localStorage.getItem('PeopleCounterApp');
+    const status = JSON.parse(storedData).status;
+    if (status === 'recording') {
+        playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+    } else if (status === 'pause') {
+        playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+    } else {
+        playBtn.innerHTML = '<i class="fa-solid fa-play"></i><i class="fa-solid fa-pause"></i>';
+    }
+}
+
+
+playBtn.addEventListener('click', () => {
+    const storedData = localStorage.getItem('PeopleCounterApp');
+    let ST = JSON.parse(storedData).status;
+    let H = JSON.parse(storedData).recordingTime;
+    if (ST === 'recording') {
+        ST = 'pause';
+        H = H
+        localStorage.setItem('PeopleCounterApp', JSON.stringify({ 
+            "status": ST,
+            "recordingTime" : H
+        }));
+    } else if (ST === 'pause') {
+        ST = 'recording';
+        H = H
+        localStorage.setItem('PeopleCounterApp', JSON.stringify({ 
+            "status": ST,
+            "recordingTime" : H
+         }));
+    } else {
+
+    }
+    playpause();
+});
+
+// 페이지 로드 시 버튼 아이콘 초기 설정
+window.addEventListener('load', () => {
+    const storedData = localStorage.getItem('PeopleCounterApp');
+    if (storedData) {
+        const { status } = JSON.parse(storedData);
+        if (status === 'pause') {
+            playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+        }
+        else if (status === 'recording') {
+            playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+        } else {
+            playBtn.innerHTML = '<i class="fa-solid fa-play"> </i><i class="fa-solid fa-pause"></i>';
+        }
+    }
+});
+
+resetBtn.addEventListener('click', () => {
+    localStorage.removeItem('PeopleCounterApp');
+    localStorage.removeItem('realCounter');
+    realCounter = {};
+    playBtn.innerHTML = '<i class="fa-solid fa-play"></i> <i class="fa-solid fa-pause"></i>';
+    const resultTableCells = document.querySelectorAll(".result-table .r");
+    resultTableCells.forEach((cell) => {
+        cell.innerText = 0;
+    });
+  // 총합 값 0으로 초기화
+  document.getElementById("rmall").innerText = 0;
+  document.getElementById("rwall").innerText = 0;
+  document.getElementById("rall").innerText = 0;
+});
+
+count.js:
+// 초기 데이터
+let stockArr = JSON.parse(localStorage.getItem('stockArr')) || {};
+let realCounter = JSON.parse(localStorage.getItem('realCounter')) || {rmall: 0, rwall: 0, rall: 0};
+
+
+
+// 페이지 로드 시 realCounter 테이블에 출력
+Object.keys(realCounter).forEach(function(key){
+    const r = document.getElementById(key);
+    r.innerText = realCounter[key];
+})
+
+// const parsedRealCounter = JSON.parse(localStorage.getItem("realCounter"));
+
+
+// 테이블 업데이트 함수
+function updateTotal() {
+    let rmTotal = 0;
+    let rwTotal = 0;
+    const rmElements = document.querySelectorAll('.rm');
+    const rwElements = document.querySelectorAll('.rw');
+    rmElements.forEach(r => {
+        const v = parseInt(r.innerText);
+        rmTotal += v;
+    });
+    rwElements.forEach(r => {
+        const v = parseInt(r.innerText);
+        rwTotal += v;
+    });
+    realCounter.rmall = rmTotal;
+    realCounter.rwall = rwTotal;
+    realCounter.rall = rmTotal + rwTotal;
+    saveToLocalStorage();
+}
+function printResult(AnG) {
+    const r = document.getElementById(AnG);
+    const v = parseInt(r.innerText);
+    r.innerText = v + 1;
+    realCounter[AnG] = v + 1;
+  }
+function printTable(){
+    document.getElementById('rmall').innerText = realCounter.rmall;
+    document.getElementById('rwall').innerText = realCounter.rwall;
+    document.getElementById('rall').innerText = realCounter.rall;
+}
+// 버튼 클릭
+document.querySelectorAll('.btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const AnG = this.dataset.title; // 클릭한 버튼의 data-title 속성 값
+      printResult(AnG); 
+      updateTotal(); 
+      printTable();
+
+      const storedData = localStorage.getItem('PeopleCounterApp');
+      const status = JSON.parse(storedData).status;
+      if (status === 'recording') {
+          stockResult(); // 기록 업데이트
+          saveToLocalStorage(); // 로컬 스토리지에 저장
+      }
+    });
+  });
+function stockResult(){    
+        const date = new Date();
+        const Y = String(date.getFullYear());
+        const M = String(date.getMonth() + 1).padStart(2, '0');
+        const D = String(date.getDate()).padStart(2, '0');
+        const DY = String(date.getDay());
+        const wArr = new Array('일요일','월요일','화요일','수요일','목요일','금요일','토요일');
+    const dArr = `${Y}년 ${M}월 ${D}일 ${wArr[DY]}`;
+
+        let PeopleCounterApp = JSON.parse(localStorage.getItem('PeopleCounterApp'));
+        const H = PeopleCounterApp.recordingTime;
+        const HH = String(parseInt(PeopleCounterApp.recordingTime) + 1);
+    const hArr = `${H}:00 - ${HH}:00`;
+
+    if (!stockArr[dArr]) {
+        stockArr[dArr] = {};
+      }
+      if (!stockArr[dArr][hArr]) {
+        stockArr[dArr][hArr] = {};
+      }
+      stockArr[dArr][hArr] = realCounter;
+
+}
+// 로컬 스토리지에 데이터 저장
+function saveToLocalStorage() {
+    localStorage.setItem('stockArr', JSON.stringify(stockArr));
+    localStorage.setItem('realCounter', JSON.stringify(realCounter));
+  }
+
+dateandtime.js:
+
+function getDate() {
+    const today = document.querySelector('#realdate');
+    // const wArr = new Array('Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday');
+    const wArr = new Array('일요일','월요일','화요일','수요일','목요일','금요일','토요일');
+    const mArr = new Array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
+    let date = new Date();
+    const d = String(date.getDate());
+    const m = date.getMonth();
+    const y = String(date.getFullYear());
+    const dy = String(date.getDay());
+    today.innerText = `${y}년 ${m+1}월 ${d}일 ${wArr[dy]}`;
+}
+
+function getTime() {
+    const time = document.querySelector('#realtime');
+    const date = new Date();
+    const h = String(date.getHours()).padStart(2,"0");
+    const m = String(date.getMinutes()).padStart(2,"0");
+    const s = String(date.getSeconds()).padStart(2,"0");
+    time.innerText = `${h}:${m}:${s}`;
+
+    const arr = JSON.parse(localStorage.getItem('PeopleCounterApp')) || {"recordingTime" : h};
+    const rt =  arr.recordingTime;
+    if(rt !== h){
+        localStorage.setItem('PeopleCounterApp', JSON.stringify({ 
+            "status": "recording",
+            "recordingTime" : h
+        }));
+        const resetBtn = document.getElementById('reset');
+        resetBtn.click();
+    }
+}
+
+getDate();
+getTime();
+setInterval(getTime, 1000);

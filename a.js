@@ -1,101 +1,51 @@
-// 초기 데이터 설정
-let stockArr = JSON.parse(localStorage.getItem('stockArr')) || {};
-let realCounter = JSON.parse(localStorage.getItem('realCounter')) || {rmall: 0, rwall: 0, rall: 0};
+const stockView = document.querySelector('.stock-view');
 
-// 페이지 로딩 시 로컬 스토리지 값 가져오기
-const parsedStockArr = JSON.parse(localStorage.getItem("stockArr"));
-const parsedRealCounter = JSON.parse(localStorage.getItem("realCounter"));
+// stockArr 데이터를 HTML로 변환하여 .stock-view에 추가하는 함수
+function renderStockData(data) {
+    for (const date in data) {
+        const dateDetails = data[date];
+        const dateElement = document.createElement('details');
+        const dateSummary = document.createElement('summary');
+        dateSummary.className = 'stock-date';
+        dateSummary.innerHTML = `<span class="stock-title">${date}</span><button class="stock-delete">❌</button>`;
+        dateElement.appendChild(dateSummary);
 
-// 값 존재 시 테이블 업데이트
-if (parsedRealCounter && parsedStockArr) {
-  updateTable(parsedRealCounter);
-  updateTotal(parsedRealCounter);
-}
+        for (const time in dateDetails) {
+            const timeDetails = dateDetails[time];
+            const timeElement = document.createElement('details');
+            const timeSummary = document.createElement('summary');
+            timeSummary.innerHTML = `<span class="stock-title">${time}</span><button class="stock-delete">❌</button>`;
+            timeElement.appendChild(timeSummary);
 
-// 버튼 클릭 시 이벤트 처리
-document.querySelectorAll('.btn').forEach(btn => {
-  btn.addEventListener('click', function() {
-    const dataTitle = this.dataset.title; // 클릭한 버튼의 data-title 속성 값
-    updateResult(dataTitle); // 결과 업데이트
-    updateTable(); // 테이블 업데이트
+            const table = document.createElement('table');
+            table.className = 'result-table';
+            const tableHeader = document.createElement('tr');
+            tableHeader.innerHTML = '<th>연령</th><th>남</th><th>여</th>';
+            table.appendChild(tableHeader);
 
-    const storedData = localStorage.getItem('PeopleCounterApp');
-    const status = JSON.parse(storedData).status;
-    if (status === 'recording') {
-        updateRecord(); // 기록 업데이트
-        saveToLocalStorage(); // 로컬 스토리지에 저장
+            for (const key in timeDetails) {
+                if (key !== 'rmall' && key !== 'rwall' && key !== 'rall') {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `<td>${key}</td><td class="stock-r">${timeDetails[key]}</td><td class="stock-r">${timeDetails[key]}</td>`;
+                    table.appendChild(tr);
+                }
+            }
+
+            const totalRow = document.createElement('tr');
+            totalRow.innerHTML = `<td>남녀</td><td id="stock-rmall">${timeDetails['rmall']}</td><td id="stock-rwall">${timeDetails['rwall']}</td>`;
+            table.appendChild(totalRow);
+
+            const totalSum = document.createElement('tr');
+            totalSum.innerHTML = `<td>총합</td><td id="stock-rall" colspan="2">${timeDetails['rall']}</td>`;
+            table.appendChild(totalSum);
+
+            timeElement.appendChild(table);
+            dateElement.appendChild(timeElement);
+        }
+
+        stockView.appendChild(dateElement);
     }
-  });
-});
-
-// 결과 업데이트 함수
-function updateResult(dataTitle) {
-  const resultElement = document.getElementById(dataTitle);
-  const currentValue = parseInt(resultElement.innerText);
-  resultElement.innerText = currentValue + 1;
-  realCounter[dataTitle] = currentValue + 1;
 }
 
-// 테이블 업데이트 함수
-function updateTable() {
-    const rmElements = document.querySelectorAll('.rm');
-    const rwElements = document.querySelectorAll('.rw');
-    let rmTotal = 0;
-    let rwTotal = 0;
-    rmElements.forEach(element => {
-        const value = parseInt(element.innerText);
-        const rw = document.getElementById(element.id);
-        rmTotal += value;
-    });
-  rwElements.forEach(element => {
-    const value = parseInt(element.innerText);
-    rwTotal += value;
-  });
-  document.getElementById('rmall').innerText = rmTotal;
-  document.getElementById('rwall').innerText = rwTotal;
-  document.getElementById('rall').innerText = rmTotal + rwTotal;
-  realCounter.rmall = rmTotal;
-  realCounter.rwall = rwTotal;
-  realCounter.rall = rmTotal + rwTotal;
-}
-
-// 기록 업데이트 함수
-function updateRecord() {
-  const date = new Date();
-  const Y = String(date.getFullYear());
-  const M = String(date.getMonth() + 1).padStart(2, '0');
-  const D = String(date.getDate()).padStart(2, '0');
-  const dArr = `${Y}${M}${D}`;
-
-  const H = String(date.getHours()).padStart(2, '0');
-  const HH = String(date.getHours() + 1).padStart(2, '0');
-  const hArr = `${H}:00 - ${HH}:00`;
-
-  const realResults = {};
-  document.querySelectorAll('.result-table td').forEach(td => {
-    const key = td.id;
-    const value = parseInt(td.innerText);
-    realResults[key] = value;
-  });
-
-  if (!stockArr[dArr]) {
-    stockArr[dArr] = {};
-  }
-  if (!stockArr[dArr][hArr]) {
-    stockArr[dArr][hArr] = {};
-  }
-  stockArr[dArr][hArr] = realResults;
-}
-
-// 총합 업데이트 함수
-function updateTotal(data) {
-  document.getElementById('rmall').innerText = data.rmall;
-  document.getElementById('rwall').innerText = data.rwall;
-  document.getElementById('rall').innerText = data.rall;
-}
-
-// 로컬 스토리지에 데이터 저장하는 함수
-function saveToLocalStorage() {
-  localStorage.setItem('stockArr', JSON.stringify(stockArr));
-  localStorage.setItem('realCounter', JSON.stringify(realCounter));
-}
+// stockArr 데이터를 HTML로 렌더링
+renderStockData(stockArr);
