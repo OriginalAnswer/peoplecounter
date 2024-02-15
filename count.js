@@ -56,6 +56,7 @@ document.querySelectorAll('.btn').forEach(btn => {
       if (status === 'recording') {
           stockResult(); // 기록 업데이트
           saveToLocalStorage(); // 로컬 스토리지에 저장
+          createStockView();
       }
     });
   });
@@ -89,120 +90,13 @@ function saveToLocalStorage() {
   }
 
 
-
-
-
-// +++++++++++++++
-
-// // console.log(stockArr)
-// // console.log(stockArr['2024년 02월 15일 목요일'])
-// const stockView = document.querySelector('.stock-view');
-// function printStock(){
-//   const dv = document.createElement('div');
-//   dv.classList.add('stock-header');
-//   dv.innerHTML =`<span class="stock-title">기록</span>
-//   <button class="stock-delete">전체삭제❌</button>`;
-//   stockView.appendChild(dv);
-
-
-//   const dvDetail = document.createElement('details');
-//   const dvSummeary = document.createElement('summary');
-//   // 이 아래부터는 순회 요소
-//   Object.keys(stockArr).forEach(function(DATE){
-//     dvDetail.appendChild(stcDATEsummary);
-//     stockView.appendChild(dvDetail);
-//     }
-//   )
-//   const dts = document.createElement('details');//순환할때마다 새로운 details
-//       const stcDATEsummary = document.createElement('summary');
-//             stcDATEsummary.classList.add('stock-date');
-//             stcDATEsummary.innerHTML = `<span class="stock-title">${DATE}</span>
-//                               <button class="stock-delete">❌</button>
-//                               `
-//       const stcTIME = document.createElement('details');
-//             stcTIME.classList.add('stock-time');
-//             stcTIME.innerHTML = `
-//             <summary>
-//                 <span class="stock-title">${TIME}</span>
-//                 <button class="stock-delete">❌</button>
-//             </summary>
-//             <table class="result-table">
-//                 <tr>
-//                     <th>연령</th><th>남</th><th>여</th>
-//                 </tr>
-//                 <tr>
-//                     <td>10대</td>
-//                     <td class="stock-r" data-id="r10m">0</td>
-//                     <td class="stock-r" data-id="r10w">0</td>
-//                 </tr>
-//                 <tr>
-//                     <td>20대</td>
-//                     <td class="stock-r" data-id="r20m">0</td>
-//                     <td class="stock-r" data-id="r20w">0</td>
-//                 </tr>
-//                 <tr>
-//                     <td>30대</td>
-//                     <td class="stock-r" data-id="r30m">0</td>
-//                     <td class="stock-r" data-id="r30w">0</td>
-//                 </tr>
-//                 <tr>
-//                     <td>40대</td>
-//                     <td class="stock-r" data-id="r40m">0</td>
-//                     <td class="stock-r" data-id="r40w">0</td>
-//                 </tr>
-//                 <tr>
-//                     <td>50대</td>
-//                     <td class="stock-r" data-id="r50m">0</td>
-//                     <td class="stock-r" data-id="r50w">0</td>
-//                 </tr>
-//                 <tr>
-//                     <td>60대</td>
-//                     <td class="stock-r" data-id="r60m">0</td>
-//                     <td class="stock-r" data-id="r60w">0</td>
-//                 </tr>
-//                 <tr>
-//                     <td>70대</td>
-//                     <td class="stock-r" data-id="r70m">0</td>
-//                     <td class="stock-r" data-id="r70w">0</td>
-//                 </tr>
-//                 <tr>
-//                     <td>남녀</td>
-//                     <td id="stock-rmall">0</td>
-//                     <td id="stock-rwall">0</td>
-//                 </tr>
-//                 <tr>
-//                     <td>총합</td>
-//                     <td id="stock-rall" colspan="2">0</td>
-//                 </tr>
-//             </table>
-            
-//                               `
-//       const stcTIMEtitle = document.createElement('summary');
-//             stcTIMEtitle.classList.add('stock-title');
-//   // 프린트
-//   dvDetail.appendChild(stcDATE);
-//   dvDetail.appendChild(stcTIME);
-//   stockView.appendChild(dvDetail);
-
-// }
-// // printStock()
-
-// Object.keys(stockArr).forEach(function(DATE){console.log(DATE);console.log(stockArr[DATE]);
-//   stockArr[DATE].forEach
-//   // Object.keys(stockArr[DATE]).forEach(function(TIME){console.log(TIME); console.log(stockArr[DATE]);
-//   //   Object.keys(stockArr[DATE][TIME]).forEach(function(r){console.log(r);
-//   //                                   // console.log(stockArr[d][t][r]);
-//   //         }
-//   //       )  
-//       // }
-//     // )  
-//   }
-// )
+// ++++++++++++++++++++++++++++++++++++++++++++
 
 
 function createStockView() {
   const stockView = document.querySelector('.stock-view');
-  stockView.innerHTML = ''; // 기존 내용 초기화
+  const stockList = document.querySelector('.stock-list');
+  stockList.innerHTML = ''; // 기존 내용 초기화
 
   Object.entries(stockArr).forEach(([date, times]) => {
       const dateDetails = document.createElement('details');
@@ -215,6 +109,7 @@ function createStockView() {
       const deleteButton = document.createElement('button');
       deleteButton.classList.add('stock-delete');
       deleteButton.textContent = '❌';
+      deleteButton.setAttribute('data-arr',`${date}`);
       dateSummary.appendChild(dateTitle);
       dateSummary.appendChild(deleteButton);
       dateDetails.appendChild(dateSummary);
@@ -230,6 +125,7 @@ function createStockView() {
           const deleteButton = document.createElement('button');
           deleteButton.classList.add('stock-delete');
           deleteButton.textContent = '❌';
+          deleteButton.setAttribute('data-arr',`${time}`);
           timeSummary.appendChild(timeTitle);
           timeSummary.appendChild(deleteButton);
           timeDetails.appendChild(timeSummary);
@@ -279,8 +175,17 @@ function createStockView() {
           timeDetails.appendChild(table);
           dateDetails.appendChild(timeDetails);
       });
-      stockView.appendChild(dateDetails);
+      stockList.appendChild(dateDetails);
   });
 }
 
 createStockView();
+
+
+// 기록 삭제버튼
+function stockDateRemove(d){
+  console.log(d)
+}
+function stockTimeRemove(t){
+  console.log(stockArr[t])
+}

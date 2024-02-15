@@ -79,3 +79,9 @@ resetBtn.addEventListener('click', () => {
   document.getElementById("rwall").innerText = 0;
   document.getElementById("rall").innerText = 0;
 });
+
+
+// 기록 리셋 버튼
+function stockArrRemoveAll(){
+    localStorage.removeItem('stockArr', JSON.stringify(stockArr));
+}
