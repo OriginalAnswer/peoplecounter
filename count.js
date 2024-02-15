@@ -34,7 +34,6 @@ function updateTotal() {
 }
 function printResult(AnG) {
     const r = document.getElementById(AnG);
-    console.log(r);
     const v = parseInt(r.innerText);
     r.innerText = v + 1;
     realCounter[AnG] = v + 1;
