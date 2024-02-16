@@ -194,12 +194,3 @@ function createStockView() {
 }
 
 createStockView();
-
-
-// 기록 삭제버튼
-function stockDateRemove(d){
-  console.log(d)
-}
-function stockTimeRemove(t){
-  console.log(stockArr[t])
-}

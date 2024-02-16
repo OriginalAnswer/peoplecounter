@@ -17,6 +17,7 @@ function playpause(){
     const status = JSON.parse(storedData).status;
     if (status === 'recording') {
         playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+        createStockView();
     } else if (status === 'pause') {
         playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
     } else {
@@ -84,5 +85,5 @@ resetBtn.addEventListener('click', () => {
 // 기록 리셋 버튼
 function stockArrRemoveAll(){
     localStorage.removeItem('stockArr', JSON.stringify(stockArr));
-    createStockView();
+    document.querySelector('.stock-list').innerHTML = '';
 }
