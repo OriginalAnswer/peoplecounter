@@ -66,7 +66,7 @@ window.addEventListener('load', () => {
 });
 
 resetBtn.addEventListener('click', () => {
-    // localStorage.removeItem('PeopleCounterApp');
+    localStorage.removeItem('PeopleCounterApp');
     localStorage.removeItem('realCounter');
     realCounter = {};
     playBtn.innerHTML = '<i class="fa-solid fa-play"></i> <i class="fa-solid fa-pause"></i>';
@@ -84,4 +84,5 @@ resetBtn.addEventListener('click', () => {
 // 기록 리셋 버튼
 function stockArrRemoveAll(){
     localStorage.removeItem('stockArr', JSON.stringify(stockArr));
+    createStockView();
 }

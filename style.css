@@ -81,6 +81,16 @@ main>div{
 }
 .stock-time{
     padding-left: 20px;
+    margin-bottom: 5px;
+}
+.stock-time summary{
+    border: var(--border);
+    padding: 3px;
+    margin-bottom: 0;
+}
+.stock-time[open] summary{
+    background-color: #eaeaeaa2;
+    border-bottom: none;
 }
 summary,.stock-header{
     display: flex;

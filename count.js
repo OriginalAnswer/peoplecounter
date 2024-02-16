@@ -106,10 +106,17 @@ function createStockView() {
       const dateTitle = document.createElement('span');
       dateTitle.classList.add('stock-title');
       dateTitle.textContent = date;
+
       const deleteButton = document.createElement('button');
       deleteButton.classList.add('stock-delete');
       deleteButton.textContent = '❌';
-      deleteButton.setAttribute('data-arr',`${date}`);
+      deleteButton.addEventListener('click', () => {
+        // 클릭된 요소의 부모 요소를 찾아 삭제
+        dateDetails.remove();
+        // 삭제된 데이터를 stockArr에서도 삭제
+        delete stockArr[date];
+        saveToLocalStorage();
+      });
       dateSummary.appendChild(dateTitle);
       dateSummary.appendChild(deleteButton);
       dateDetails.appendChild(dateSummary);
@@ -125,7 +132,14 @@ function createStockView() {
           const deleteButton = document.createElement('button');
           deleteButton.classList.add('stock-delete');
           deleteButton.textContent = '❌';
-          deleteButton.setAttribute('data-arr',`${time}`);
+          deleteButton.addEventListener('click', () => {
+            // 클릭된 요소의 부모 요소를 찾아 삭제
+            // timeSummary.remove();
+            timeDetails.remove();
+            // 삭제된 데이터를 stockArr에서도 삭제
+            delete stockArr[date][time];
+            saveToLocalStorage();
+          });
           timeSummary.appendChild(timeTitle);
           timeSummary.appendChild(deleteButton);
           timeDetails.appendChild(timeSummary);
