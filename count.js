@@ -1,6 +1,8 @@
 // 초기 데이터
 let stockArr = JSON.parse(localStorage.getItem('stockArr')) || {};
-let realCounter = JSON.parse(localStorage.getItem('realCounter')) || {rmall: 0, rwall: 0, rall: 0};
+let realCounter = JSON.parse(localStorage.getItem('realCounter')) || {
+  r10all: 0, r20all: 0, r30all: 0, r40all: 0, r50all: 0, r60all: 0, r70all: 0,
+  rmall: 0, rwall: 0, rall: 0};
 
 
 
@@ -15,6 +17,24 @@ Object.keys(realCounter).forEach(function(key){
 
 // 테이블 업데이트 함수
 function updateTotal() {
+    function calculateTotal(className) {
+        let total = 0;
+        const elements = document.querySelectorAll(className);
+        elements.forEach(r => {
+            const v = parseInt(r.innerText);
+            total += v;
+        });
+        return total;
+    }
+    
+    realCounter.r10all = calculateTotal('.r10');
+    realCounter.r20all = calculateTotal('.r20');
+    realCounter.r30all = calculateTotal('.r30');
+    realCounter.r40all = calculateTotal('.r40');
+    realCounter.r50all = calculateTotal('.r50');
+    realCounter.r60all = calculateTotal('.r60');
+    realCounter.r70all = calculateTotal('.r70');
+
     let rmTotal = 0;
     let rwTotal = 0;
     const rmElements = document.querySelectorAll('.rm');
@@ -39,6 +59,13 @@ function printResult(AnG) {
     realCounter[AnG] = v + 1;
   }
 function printTable(){
+  document.getElementById('r10all').innerText = realCounter.r10all;
+  document.getElementById('r20all').innerText = realCounter.r20all;
+  document.getElementById('r30all').innerText = realCounter.r30all;
+  document.getElementById('r40all').innerText = realCounter.r40all;
+  document.getElementById('r50all').innerText = realCounter.r50all;
+  document.getElementById('r60all').innerText = realCounter.r60all;
+  document.getElementById('r70all').innerText = realCounter.r70all;
     document.getElementById('rmall').innerText = realCounter.rmall;
     document.getElementById('rwall').innerText = realCounter.rwall;
     document.getElementById('rall').innerText = realCounter.rall;
@@ -149,7 +176,7 @@ function createStockView() {
                     //테이블 헤더, 연령 남 여
                     const tableHead = document.createElement('thead');
                     const headRow = document.createElement('tr');
-                    ['연령', '남', '여'].forEach(text => {
+                    ['연령', '남', '여','합계'].forEach(text => {
                         const th = document.createElement('th');
                         th.textContent = text;
                         headRow.appendChild(th);
@@ -168,21 +195,23 @@ function createStockView() {
                         const count = data[`r${age.replace('대', '')}${gender}`] || 0; //위위[]에서 숫자만 남기려고 data[r숫자w]
                         const countCell = document.createElement('td');
                         countCell.textContent = count;//카운트 td안에 data[id]값 넣기
-                        bodyRow.appendChild(countCell);//tr>tb+tb+tb 모르겠네...
-                    });
+                        bodyRow.appendChild(countCell);
+                      });
+                      
+                      const ageAll = data[`r${age.replace('대', '')}all`] || 0;
+                      const ageAllCell = document.createElement('td');
+                      ageAllCell.textContent = ageAll;//카운트 td안에 data[id]값 넣기
+                      bodyRow.appendChild(ageAllCell);
+                    
+
                     tableBody.appendChild(bodyRow);
           });
-          const totalMWRow =  document.createElement('tr');
-          totalMWRow.innerHTML = `
+          const totalRow =  document.createElement('tr');
+          totalRow.innerHTML = `
           <td>남녀</td>
           <td class="stock-rmall">${data['rmall']}</td>
-          <td class="stock-rwall">${data['rwall']}</td>`;
-          const totalRow =  document.createElement('tr');
-          totalRow.innerHTML =`
-          <td>총합</td>
-          <td class="stock-rall" colspan="2">${data['rall']}</td>
-          `;
-          tableBody.appendChild(totalMWRow);
+          <td class="stock-rwall">${data['rwall']}</td>
+          <td class="stock-rall">${data['rall']}</td>`;
           tableBody.appendChild(totalRow);
            
           table.appendChild(tableBody);
