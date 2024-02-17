@@ -26,7 +26,6 @@ function updateTotal() {
         });
         return total;
     }
-    
     realCounter.r10all = calculateTotal('.r10');
     realCounter.r20all = calculateTotal('.r20');
     realCounter.r30all = calculateTotal('.r30');
@@ -134,18 +133,32 @@ function createStockView() {
       dateTitle.classList.add('stock-title');
       dateTitle.textContent = date;
 
-      const deleteButton = document.createElement('button');
-      deleteButton.classList.add('stock-delete');
-      deleteButton.textContent = '❌';
-      deleteButton.addEventListener('click', () => {
-        // 클릭된 요소의 부모 요소를 찾아 삭제
+      const deleteDS = document.createElement('button');
+      deleteDS.classList.add('stock-s','sure','btn', 'dpnone');
+      deleteDS.textContent = 'sure?';
+      deleteDS.addEventListener('click', () => {
         dateDetails.remove();
-        // 삭제된 데이터를 stockArr에서도 삭제
         delete stockArr[date];
         saveToLocalStorage();
       });
+
+      const deleteDX = document.createElement('button');
+      deleteDX.classList.add('stock-x');
+      deleteDX.textContent = '❌';
+      deleteDX.addEventListener('click', () => {
+        deleteDX.classList.add('dpnone');
+        deleteDS.classList.remove('dpnone');
+        document.onclick = () =>{
+            if(event.target !== deleteDX){
+                deleteDX.classList.remove('dpnone');
+                deleteDS.classList.add('dpnone');
+              }
+            }
+          }
+      );
       dateSummary.appendChild(dateTitle);
-      dateSummary.appendChild(deleteButton);
+      dateSummary.appendChild(deleteDX);
+      dateSummary.appendChild(deleteDS);
       dateDetails.appendChild(dateSummary);
 
       Object.entries(times).forEach(([time, data]) => {
@@ -156,19 +169,38 @@ function createStockView() {
           const timeTitle = document.createElement('span');
           timeTitle.classList.add('stock-title');
           timeTitle.textContent = time;
-          const deleteButton = document.createElement('button');
-          deleteButton.classList.add('stock-delete');
-          deleteButton.textContent = '❌';
-          deleteButton.addEventListener('click', () => {
-            // 클릭된 요소의 부모 요소를 찾아 삭제
-            // timeSummary.remove();
+          
+          const deleteTS = document.createElement('button');
+          deleteTS.classList.add('stock-s','sure','btn', 'dpnone');
+          deleteTS.textContent = 'sure?';
+          deleteTS.addEventListener('click', () => {
             timeDetails.remove();
-            // 삭제된 데이터를 stockArr에서도 삭제
             delete stockArr[date][time];
             saveToLocalStorage();
           });
+
+          const deleteTX = document.createElement('button');
+          deleteTX.classList.add('stock-x');
+          deleteTX.textContent = '❌';
+          deleteTX.addEventListener('click', () => {
+            deleteTX.classList.add('dpnone');
+            deleteTS.classList.remove('dpnone');
+            document.onclick = () =>{
+                if(event.target !== deleteTX){
+                    deleteTX.classList.remove('dpnone');
+                    deleteTS.classList.add('dpnone')
+                  }
+                }
+              }
+              );
+              deleteDX.onclick = ()=>{
+            deleteTX.classList.remove('dpnone');
+            deleteTS.classList.add('dpnone')
+
+          }
           timeSummary.appendChild(timeTitle);
-          timeSummary.appendChild(deleteButton);
+          timeSummary.appendChild(deleteTX);
+          timeSummary.appendChild(deleteTS);
           timeDetails.appendChild(timeSummary);
 
           const table = document.createElement('table');

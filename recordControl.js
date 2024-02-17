@@ -82,6 +82,36 @@ resetBtn.addEventListener('click', () => {
 });
 
 
+const stockResetBtnSure = document.querySelector('.stock-reset-btn-sure');
+const stockResetBtn = document.querySelector('.stock-reset-btn');
+stockResetBtn.onclick = ()=>{
+    if(!localStorage.getItem('stockArr')){
+    } else {
+        stockResetBtn.classList.add('dpnone')
+        stockResetBtnSure.classList.remove('dpnone');
+        const stockDTS = document.querySelectorAll('.stock-s');
+        const stockDTX = document.querySelectorAll('.stock-x');
+        stockDTS.forEach((dts) => {
+            dts.classList.add('dpnone');
+            stockDTX.forEach((dtx) => {
+                dtx.classList.remove('dpnone');
+            })
+        })
+        document.onclick = () =>{
+            if(event.target !== stockResetBtn){
+                stockResetBtn.classList.remove('dpnone');
+                stockResetBtnSure.classList.add('dpnone')
+            }
+        }
+
+    }
+};
+
+stockResetBtnSure.onclick = ()=>{
+    stockArrRemoveAll();
+    stockResetBtn.classList.remove('dpnone');
+    stockResetBtnSure.classList.add('dpnone')
+};
 // 기록 리셋 버튼
 function stockArrRemoveAll(){
     localStorage.removeItem('stockArr', JSON.stringify(stockArr));

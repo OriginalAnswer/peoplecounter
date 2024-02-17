@@ -71,13 +71,20 @@ main>div{
     gap: 5px;
     margin-bottom: 5px;
 }
+.btn{
+    border-radius: 2px;
+}
 .btn-row .btn{
     width: 100%;
     padding: 8px;
     border: var(--border);
 }
-.btn:hover{
+.btn:hover:not(.sure){
     background-color: #d6d6d6;
+}
+.sure{
+    background-color: #02c51c;
+    color: #fff;
 }
 /* ----------------- */
 
@@ -102,7 +109,7 @@ main>div{
 }
 .stock-time summary{
     border: var(--border);
-    padding: 3px;
+    padding: 4px;
     margin-bottom: 0;
 }
 .stock-date summary:hover,
@@ -133,10 +140,12 @@ summary,.stock-header{
     border: var(--border);
     padding: 4px;
 }
-.stock-delete{
-    /* border: var(--border);
-    padding: 1px; */
+.stock-x{
     background-color:#00000000;
+}
+.stock-s{
+    border: var(--border);
+    padding: 1px 4px;
 }
 
 /* ----------------- */
