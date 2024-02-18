@@ -133,32 +133,23 @@ function createStockView() {
       dateTitle.classList.add('stock-title');
       dateTitle.textContent = date;
 
-      const deleteDS = document.createElement('button');
-      deleteDS.classList.add('stock-s','sure','btn', 'dpnone');
-      deleteDS.textContent = 'sure?';
-      deleteDS.addEventListener('click', () => {
-        dateDetails.remove();
-        delete stockArr[date];
-        saveToLocalStorage();
-      });
-
+      
+      
       const deleteDX = document.createElement('button');
       deleteDX.classList.add('stock-x');
+      // deleteDX.id = `x${stringDate}`;
       deleteDX.textContent = '❌';
       deleteDX.addEventListener('click', () => {
-        deleteDX.classList.add('dpnone');
-        deleteDS.classList.remove('dpnone');
-        document.onclick = () =>{
-            if(event.target !== deleteDX){
-                deleteDX.classList.remove('dpnone');
-                deleteDS.classList.add('dpnone');
+        const confirmDelete = confirm('정말로 삭제하시겠습니까?');
+        if (confirmDelete) {
+                dateDetails.remove();
+                delete stockArr[date];
+                saveToLocalStorage();
               }
             }
-          }
       );
       dateSummary.appendChild(dateTitle);
       dateSummary.appendChild(deleteDX);
-      dateSummary.appendChild(deleteDS);
       dateDetails.appendChild(dateSummary);
 
       Object.entries(times).forEach(([time, data]) => {
@@ -170,37 +161,22 @@ function createStockView() {
           timeTitle.classList.add('stock-title');
           timeTitle.textContent = time;
           
-          const deleteTS = document.createElement('button');
-          deleteTS.classList.add('stock-s','sure','btn', 'dpnone');
-          deleteTS.textContent = 'sure?';
-          deleteTS.addEventListener('click', () => {
-            timeDetails.remove();
-            delete stockArr[date][time];
-            saveToLocalStorage();
-          });
+          
 
           const deleteTX = document.createElement('button');
           deleteTX.classList.add('stock-x');
           deleteTX.textContent = '❌';
           deleteTX.addEventListener('click', () => {
-            deleteTX.classList.add('dpnone');
-            deleteTS.classList.remove('dpnone');
-            document.onclick = () =>{
-                if(event.target !== deleteTX){
-                    deleteTX.classList.remove('dpnone');
-                    deleteTS.classList.add('dpnone')
-                  }
-                }
+                const confirmDelete = confirm('정말로 삭제하시겠습니까?');
+                if (confirmDelete) {
+                                    delete stockArr[date][time];
+                                    saveToLocalStorage();
+                                    timeDetails.remove()
+                                  }
               }
-              );
-              deleteDX.onclick = ()=>{
-            deleteTX.classList.remove('dpnone');
-            deleteTS.classList.add('dpnone')
-
-          }
+            );
           timeSummary.appendChild(timeTitle);
           timeSummary.appendChild(deleteTX);
-          timeSummary.appendChild(deleteTS);
           timeDetails.appendChild(timeSummary);
 
           const table = document.createElement('table');

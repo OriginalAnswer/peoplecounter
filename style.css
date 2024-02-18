@@ -82,10 +82,10 @@ main>div{
 .btn:hover:not(.sure){
     background-color: #d6d6d6;
 }
-.sure{
+/* .sure{
     background-color: #02c51c;
     color: #fff;
-}
+} */
 /* ----------------- */
 
 .stock-list{
@@ -142,10 +142,6 @@ summary,.stock-header{
 }
 .stock-x{
     background-color:#00000000;
-}
-.stock-s{
-    border: var(--border);
-    padding: 1px 4px;
 }
 
 /* ----------------- */
