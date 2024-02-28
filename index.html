@@ -11,125 +11,135 @@
         <h1>유동인구조사기</h1>
     </header>
     <main>
-        <div id="realdate">0000년00월00일0요일</div>
-        <div id="realtime">00:00:00</div>
-        <div class="text">
-            <div class="title"></div>
-            <div class="result">
-                <table class="result-table">
-                    <tr>
-                        <th>연령</th>
-                        <th>남</th>
-                        <th>여</th>
-                        <th>합계</th>
-                    </tr>
-                    <tr>
-                        <td>10대</td>
-                        <td class="r r10 rm" id="r10m">0</td>
-                        <td class="r r10 rw" id="r10w">0</td>
-                        <td id="r10all">0</td>
-                    </tr>
-                    <tr>
-                        <td>20대</td>
-                        <td class="r r20 rm" id="r20m">0</td>
-                        <td class="r r20 rw" id="r20w">0</td>
-                        <td id="r20all">0</td>
-                    </tr>
-                    <tr>
-                        <td>30대</td>
-                        <td class="r r30 rm" id="r30m">0</td>
-                        <td class="r r30 rw" id="r30w">0</td>
-                        <td id="r30all">0</td>
-                    </tr>
-                    <tr>
-                        <td>40대</td>
-                        <td class="r r40 rm" id="r40m">0</td>
-                        <td class="r r40 rw" id="r40w">0</td>
-                        <td id="r40all">0</td>
-                    </tr>
-                    <tr>
-                        <td>50대</td>
-                        <td class="r r50 rm" id="r50m">0</td>
-                        <td class="r r50 rw" id="r50w">0</td>
-                        <td id="r50all">0</td>
-                    </tr>
-                    <tr>
-                        <td>60대</td>
-                        <td class="r r60 rm" id="r60m">0</td>
-                        <td class="r r60 rw" id="r60w">0</td>
-                        <td id="r60all">0</td>
-                    </tr>
-                    <tr>
-                        <td>70대</td>
-                        <td class="r r70 rm" id="r70m">0</td>
-                        <td class="r r70 rw" id="r70w">0</td>
-                        <td id="r70all">0</td>
-                    </tr>
-                    <tr>
-                        <td>남녀</td>
-                        <td id="rmall">0</td>
-                        <td id="rwall">0</td>
-                        <td id="rall">0</td>
-                    </tr>
-                </table>
+        <section class="adsense-container adsense-container_ad1-container">
+            <div class="ad1-container"></div>
+        </section>
+        <section class="app">
+            <div id="realdate">0000년00월00일0요일</div>
+            <div id="realtime">00:00:00</div>
+            <div class="text">
+                <div class="title"></div>
+                <div class="result">
+                    <table class="result-table">
+                        <tr>
+                            <th>연령</th>
+                            <th>남</th>
+                            <th>여</th>
+                            <th>합계</th>
+                        </tr>
+                        <tr>
+                            <td>10대</td>
+                            <td class="r r10 rm" id="r10m">0</td>
+                            <td class="r r10 rw" id="r10w">0</td>
+                            <td id="r10all">0</td>
+                        </tr>
+                        <tr>
+                            <td>20대</td>
+                            <td class="r r20 rm" id="r20m">0</td>
+                            <td class="r r20 rw" id="r20w">0</td>
+                            <td id="r20all">0</td>
+                        </tr>
+                        <tr>
+                            <td>30대</td>
+                            <td class="r r30 rm" id="r30m">0</td>
+                            <td class="r r30 rw" id="r30w">0</td>
+                            <td id="r30all">0</td>
+                        </tr>
+                        <tr>
+                            <td>40대</td>
+                            <td class="r r40 rm" id="r40m">0</td>
+                            <td class="r r40 rw" id="r40w">0</td>
+                            <td id="r40all">0</td>
+                        </tr>
+                        <tr>
+                            <td>50대</td>
+                            <td class="r r50 rm" id="r50m">0</td>
+                            <td class="r r50 rw" id="r50w">0</td>
+                            <td id="r50all">0</td>
+                        </tr>
+                        <tr>
+                            <td>60대</td>
+                            <td class="r r60 rm" id="r60m">0</td>
+                            <td class="r r60 rw" id="r60w">0</td>
+                            <td id="r60all">0</td>
+                        </tr>
+                        <tr>
+                            <td>70대</td>
+                            <td class="r r70 rm" id="r70m">0</td>
+                            <td class="r r70 rw" id="r70w">0</td>
+                            <td id="r70all">0</td>
+                        </tr>
+                        <tr>
+                            <td>남녀</td>
+                            <td id="rmall">0</td>
+                            <td id="rwall">0</td>
+                            <td id="rall">0</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
-        </div>
-        
-        <div class="control-btn">
-            <button class="btn" id="record">🔴</button>
-            <button class="btn" id="play">
-                <i class="fa-solid fa-play"></i>
-                <i class="fa-solid fa-pause"></i>
-            </button>
-            <button class="btn" id="reset">
-                <i class="fa-solid fa-rotate-right"></i>
-            </button>
-        </div>
-
-        <div class="btn-container">
-            <div class="btn-row">
-                <button class="btn" id="btn10m" data-title="r10m">10대 남</button>
-                <button class="btn" id="btn10w" data-title="r10w">10대 여</button>
-            </div>
-            <div class="btn-row">
-                <button class="btn" id="btn20m" data-title="r20m">20대 남</button>
-                <button class="btn" id="btn20w" data-title="r20w">20대 여</button>
-            </div>
-            <div class="btn-row">
-                <button class="btn" id="btn30m" data-title="r30m">30대 남</button>
-                <button class="btn" id="btn30w" data-title="r30w">30대 여</button>
-            </div>
-            <div class="btn-row">
-                <button class="btn" id="btn40m" data-title="r40m">40대 남</button>
-                <button class="btn" id="btn40w" data-title="r40w">40대 여</button>
-            </div>
-            <div class="btn-row">
-                <button class="btn" id="btn50m" data-title="r50m">50대 남</button>
-                <button class="btn" id="btn50w" data-title="r50w">50대 여</button>
-            </div>
-            <div class="btn-row">
-                <button class="btn" id="btn60m" data-title="r60m">60대 남</button>
-                <button class="btn" id="btn60w" data-title="r60w">60대 여</button>
-            </div>
-            <div class="btn-row">
-                <button class="btn" id="btn70m" data-title="r70m">70대 남</button>
-                <button class="btn" id="btn70w" data-title="r70w">70대 여</button>
-            </div>
-        </div>
-        <div class="stock-view">
-            <div class="stock-header">
-                <span>기록</span>
-                <button 
-                    class="btn stock-reset-btn-sure sure dpnone" 
-                    id="stock-remove-all">
-                    sure?
+            
+            <div class="control-btn">
+                <button class="btn" id="record">🔴</button>
+                <button class="btn" id="play">
+                    <i class="fa-solid fa-play"></i>
+                    <i class="fa-solid fa-pause"></i>
                 </button>
-                <button class="btn stock-reset-btn">reset</button>
+                <button class="btn" id="reset">
+                    <i class="fa-solid fa-rotate-right"></i>
+                </button>
             </div>
-            <div class="stock-list">
 
+            <div class="btn-container">
+                <div class="btn-row">
+                    <button class="btn" id="btn10m" data-title="r10m">10대 남</button>
+                    <button class="btn" id="btn10w" data-title="r10w">10대 여</button>
+                </div>
+                <div class="btn-row">
+                    <button class="btn" id="btn20m" data-title="r20m">20대 남</button>
+                    <button class="btn" id="btn20w" data-title="r20w">20대 여</button>
+                </div>
+                <div class="btn-row">
+                    <button class="btn" id="btn30m" data-title="r30m">30대 남</button>
+                    <button class="btn" id="btn30w" data-title="r30w">30대 여</button>
+                </div>
+                <div class="btn-row">
+                    <button class="btn" id="btn40m" data-title="r40m">40대 남</button>
+                    <button class="btn" id="btn40w" data-title="r40w">40대 여</button>
+                </div>
+                <div class="btn-row">
+                    <button class="btn" id="btn50m" data-title="r50m">50대 남</button>
+                    <button class="btn" id="btn50w" data-title="r50w">50대 여</button>
+                </div>
+                <div class="btn-row">
+                    <button class="btn" id="btn60m" data-title="r60m">60대 남</button>
+                    <button class="btn" id="btn60w" data-title="r60w">60대 여</button>
+                </div>
+                <div class="btn-row">
+                    <button class="btn" id="btn70m" data-title="r70m">70대 남</button>
+                    <button class="btn" id="btn70w" data-title="r70w">70대 여</button>
+                </div>
             </div>
-        </div>
+            <div class="stock-view">
+                <div class="stock-header">
+                    <span>기록</span>
+                    <button 
+                        class="btn stock-reset-btn-sure sure dpnone" 
+                        id="stock-remove-all">
+                        sure?
+                    </button>
+                    <button class="btn stock-reset-btn">reset</button>
+                </div>
+                <div class="stock-list">
+
+                </div>
+            </div>
+            
+        </section>
+        <section class="adsense-container adsense-container_ad2-container">
+            <div class="ad2-container"></div>
+        </section>
+
     </main>
 
     <footer>made by 100</footer>

@@ -26,14 +26,29 @@ header{
     font-size: 1.5em;
 }
 main{
+    /* padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1; */
+    display: flex;
+    /* flex-direction: row; */
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.app{
     padding: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    flex: 1;
+    /* flex: 1; */
+    width: 100%;
+    /* max-width: 500px; */
 }
-main>div{
+.app>div{
     max-width: 500px;
     /* border: var(--border); */
     padding: 10px;
@@ -176,4 +191,59 @@ footer{
 /* ----------------- */
 .dpnone{
     display: none;
+}
+
+
+/* 광고----------------- */
+/* .adsense-container{
+    border: var(--border);
+    width: 100%;
+    max-width: 450px;
+    height: 100%;
+    padding: 50px;
+    display: flex;
+    justify-content: center;
+} */
+/* .ad1-container,
+.ad2-container{
+    border: var(--border);
+    width: 300px;
+    aspect-ratio: 9/16;
+} */
+/* .adsense-container_ad2-container{
+    border: var(--border);
+    width: 100%;
+    max-width: 100%;
+    height: 450px;
+    padding: 5px 0;
+    display: flex;
+    justify-content: center;
+    aspect-ratio: 1/1;
+} */
+@media (max-width:767px) {
+    main{
+        flex-direction: column;
+    }
+    .adsense-container_ad1-container{
+        display: none;
+    }
+    .ad1-container{
+        display: none;
+    }
+    .adsense-container_ad2-container{
+        border: var(--border);
+        width: 100%;
+        max-width: 100%;
+        /* height: 450px; */
+        padding: 5px 0;
+        display: flex;
+        justify-content: center;
+        aspect-ratio: 1/1;
+    }
+    .ad2-container{
+        border: var(--border);
+        height: 100%;
+        width: 100%;
+        /* aspect-ratio: 16/9; */
+    }
 }
